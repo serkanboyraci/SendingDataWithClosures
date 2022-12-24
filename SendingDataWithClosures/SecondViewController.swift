@@ -7,23 +7,27 @@
 
 import UIKit
 
+typealias text = (String) -> () //using typealias to define closure type
+
 class SecondViewController: UIViewController {
+    
+    
+    @IBOutlet weak var enteredTextField: UITextField! //defined textField
+    
+    var textClousure : text! // defined typealias used for created clousure type variable
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+    
+    }
+   
+    @IBAction func sendDataClicked(_ sender: Any) { //defined button
+        guard let text = enteredTextField.text else {return} // taking text data with guard let
+        textClousure(text)
+   
+        navigationController?.popViewController(animated: true) // to go back FirstVC with NavigationController
+        
+        
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
